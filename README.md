@@ -34,6 +34,7 @@ Go to the release section of the project's repository and download the provided 
 Run the Executable:
 
 Double-click the downloaded .exe file to run the application. Follow the on-screen instructions to complete the installation.
+
 Method 2: Manual Installation  (Recommended for Ubuntu user))
 
 Step 1: Clone the Repository
