@@ -22,11 +22,11 @@ View the current network connection status.
 Test and troubleshoot network issues.
 
 
-## Application Installation Instructions
+### Application Installation Instructions
 
 The application can be installed using two methods: via an executable file provided in the release or by manually installing the application.
 
-### Method 1: Using the Executable File  (Recommended for Windows user)
+## Method 1: Using the Executable File  (Recommended for Windows user)
 
 Download the Executable:
 
@@ -35,7 +35,7 @@ Run the Executable:
 
 Double-click the downloaded .exe file to run the application. Follow the on-screen instructions to complete the installation.
 
-### Method 2: Manual Installation  (Recommended for Ubuntu user))
+## Method 2: Manual Installation  (Recommended for Ubuntu user))
 
 Step 1: Clone the Repository
 
