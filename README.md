@@ -30,7 +30,7 @@ The application can be installed using two methods: via an executable file provi
 
 Download the Executable:
 
-Go to the release section of the project's repository and download the provided .exe file.
+Go to the release [https://github.com/090ebier/Cloudflare-Management/releases/tag/v1.0.1] section of the project's repository and download the provided .exe file.
 Run the Executable:
 
 Double-click the downloaded .exe file to run the application. Follow the on-screen instructions to complete the installation.
