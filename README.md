@@ -42,7 +42,6 @@ Clone the repository using the following command:
 git clone https://github.com/your-username/your-repository.git
 cd your-repository
 pip install -r requirements.txt
-
 ```
 ```
 python main.py
