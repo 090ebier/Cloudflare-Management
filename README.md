@@ -47,6 +47,6 @@ cd Cloudflare-Management
 pip install -r requirements.txt
 ```
 ```
-python main.py
+python Cloudflare-Management.py
 ```
 
