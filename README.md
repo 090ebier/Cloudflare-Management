@@ -27,6 +27,7 @@ Test and troubleshoot network issues.
 The application can be installed using two methods: via an executable file provided in the release or by manually installing the application.
 
 Method 1: Using the Executable File  (Recommended for Windows user)
+
 Download the Executable:
 
 Go to the release section of the project's repository and download the provided .exe file.
@@ -34,6 +35,7 @@ Run the Executable:
 
 Double-click the downloaded .exe file to run the application. Follow the on-screen instructions to complete the installation.
 Method 2: Manual Installation  (Recommended for Ubuntu user))
+
 Step 1: Clone the Repository
 
 Open a terminal or command prompt.
