@@ -40,7 +40,7 @@ class CloudflareApp(QWidget):
         self.email_input = QLineEdit()
         self.email_input.setToolTip("Enter your Cloudflare Email")
         self.email_input.installEventFilter(self)
-        self.email_input.setReadOnly(False)  # Ensure the field is enabled
+        self.email_input.setReadOnly(False)  
         login_layout.addWidget(self.email_label)
         login_layout.addWidget(self.email_input)
 
@@ -51,7 +51,7 @@ class CloudflareApp(QWidget):
             "1. Log in to the Cloudflare dashboard and go to User Profile > API Tokens.\n"
             "2. In the API Keys section, click View button of Global API Key.")
         self.api_key_input.installEventFilter(self)
-        self.api_key_input.setReadOnly(False)  # Ensure the field is enabled
+        self.api_key_input.setReadOnly(False)  
         login_layout.addWidget(self.api_key_label)
         login_layout.addWidget(self.api_key_input)
 
@@ -87,10 +87,9 @@ class CloudflareApp(QWidget):
         self.dark_mode = self.is_dark_mode()
         self.apply_stylesheet(self.dark_mode)
 
-        # Setup timer to check for theme changes
         self.timer = QTimer()
         self.timer.timeout.connect(self.check_for_theme_change)
-        self.timer.start(1000)  # Check every second
+        self.timer.start(1000)  
 
     def is_dark_mode(self):
         try:
@@ -267,15 +266,13 @@ class CloudflareApp(QWidget):
             self.login_button.clicked.disconnect()
             self.login_button.clicked.connect(self.logout)
 
-            # Enable editing of email and api key fields after successful login
             self.email_input.setReadOnly(False)
             self.api_key_input.setReadOnly(False)
 
-            # Disable editing of email and api key fields after successful login
             self.email_input.setReadOnly(True)
             self.api_key_input.setReadOnly(True)
 
-            self.show_tooltips = False  # Disable tooltips after login
+            self.show_tooltips = False  
         else:
             QMessageBox.critical(self, "Login Failed",
                                  "Invalid API Key or Email.")
@@ -286,16 +283,14 @@ class CloudflareApp(QWidget):
         self.domain_list_button.setEnabled(False)
         self.add_domain_button.setEnabled(False)
 
-        # Enable editing of email input field
         self.email_input.setReadOnly(False)
-        # Enable editing of api key input field
         self.api_key_input.setReadOnly(False)
 
         self.login_button.setText("Login")
         self.login_button.clicked.disconnect()
         self.login_button.clicked.connect(self.login)
         QMessageBox.information(self, "Logout", "Successfully logged out.")
-        self.show_tooltips = True  # Enable tooltips after logout
+        self.show_tooltips = True 
 
     def show_domain_list(self):
         if not self.email or not self.api_key:
@@ -402,15 +397,14 @@ class ZoneListDialog(QDialog):
             item.setData(Qt.UserRole, zone)
             self.list_widget.addItem(item)
 
-            # Add a separator line item except for the last domain
+
             if index < len(self.zones) - 1:
                 separator_item = QListWidgetItem(25*"-")
-                # Make the separator non-selectable
                 separator_item.setFlags(Qt.NoItemFlags)
                 self.list_widget.addItem(separator_item)
 
         font = self.list_widget.font()
-        font.setPointSize(14)  # Set font size for items
+        font.setPointSize(14)  
         self.list_widget.setFont(font)
 
         self.list_widget.itemDoubleClicked.connect(self.show_zone_options)
@@ -430,16 +424,16 @@ class ZoneListDialog(QDialog):
 
     def show_zone_options(self, item):
         zone_data = item.data(Qt.UserRole)
-        if zone_data:  # Check if it's a valid domain item
+        if zone_data:  
             self.zone_options_dialog = ZoneOptionsDialog(
                 zone_data, parent=self.parent())
-            # Re-show this dialog when the options dialog is closed
+
             self.zone_options_dialog.finished.connect(self.show)
             self.zone_options_dialog.show()
-            self.accept()  # Close this dialog
+            self.accept()  
 
     def closeEvent(self, event):
-        self.parent().show()  # Show the parent window when this dialog is closed
+        self.parent().show()  
         event.accept()
 
 
@@ -459,7 +453,6 @@ class ZoneOptionsDialog(QDialog):
         self.create_buttons_group()
         self.create_name_servers_group()
 
-        # Add Back Button Separately
         self.back_button = QPushButton("Back")
         self.back_button.clicked.connect(self.close)
         self.layout.addWidget(self.back_button)
@@ -617,19 +610,19 @@ class DNSRecordsDialog(QDialog):
         self.records_table.horizontalHeader().setSectionResizeMode(4, QHeaderView.Stretch)
         self.records_table.horizontalHeader().setSectionResizeMode(5, QHeaderView.Stretch)
         self.records_table.horizontalHeader().setSectionResizeMode(
-            6, QHeaderView.Stretch)  # Stretch 'Name' column
+            6, QHeaderView.Stretch)  
         self.records_table.horizontalHeader().setSectionResizeMode(
-            7, QHeaderView.Stretch)  # Stretch 'Content' column
+            7, QHeaderView.Stretch)  
 
-        self.records_table.setSortingEnabled(True)  # Enable sorting
+        self.records_table.setSortingEnabled(True) 
         self.records_table.setEditTriggers(
-            QTableWidget.NoEditTriggers)  # Make cells read-only
+            QTableWidget.NoEditTriggers)  
         self.records_table.setSelectionBehavior(
-            QTableWidget.SelectRows)  # Select entire rows
+            QTableWidget.SelectRows)  
         self.records_table.setSelectionMode(
-            QTableWidget.SingleSelection)  # Single row selection
+            QTableWidget.SingleSelection)  
         self.records_table.setContextMenuPolicy(
-            Qt.CustomContextMenu)  # Enable context menu
+            Qt.CustomContextMenu)  
 
         self.records_table.customContextMenuRequested.connect(
             self.context_menu)
@@ -658,7 +651,7 @@ class DNSRecordsDialog(QDialog):
             if item is not None:
                 clipboard = QApplication.clipboard()
                 clipboard.setText(item.text())
-            # Reset clicked_row and clicked_column
+
             self.clicked_row = -1
             self.clicked_column = -1
 
@@ -682,7 +675,7 @@ class DNSRecordsDialog(QDialog):
             response = requests.get(
                 f'https://api.cloudflare.com/client/v4/zones/{self.zone_id}/dns_records', headers=headers)
 
-            response.raise_for_status()  # Raise an exception for non-200 responses
+            response.raise_for_status()  
 
             self.records_table.clearContents()
             self.records_table.setRowCount(0)
@@ -811,7 +804,7 @@ class RecordFormDialog(QDialog):
             self.load_record_data()
 
         # Adjusting the dialog size
-        self.resize(500, 400)  # Set your preferred size here
+        self.resize(500, 400)  
 
     def initUI(self):
         self.layout = QVBoxLayout(self)
@@ -995,7 +988,7 @@ class SSLSettingsDialog(QDialog):
         if response_ssl_mode.status_code == 200:
             ssl_mode_settings = response_ssl_mode.json().get('result', {})
             current_ssl_mode = ssl_mode_settings.get('value', 'off')
-            # Find the corresponding index for the current value
+
             index = self.ssl_mode_combo.findData(current_ssl_mode)
             if index != -1:
                 self.ssl_mode_combo.setCurrentIndex(index)
@@ -1012,7 +1005,7 @@ class SSLSettingsDialog(QDialog):
             universal_ssl_settings = response_universal_ssl.json().get('result', {})
             universal_ssl_enabled = universal_ssl_settings.get(
                 'enabled', False)
-            # Set combo box state based on the loaded value
+ 
             index = self.universal_ssl_combo.findData(universal_ssl_enabled)
             if index != -1:
                 self.universal_ssl_combo.setCurrentIndex(index)
@@ -1021,11 +1014,11 @@ class SSLSettingsDialog(QDialog):
             QMessageBox.critical(
                 self, "Error", "Failed to load Universal SSL setting.")
 
-        self.initial_load = False  # پایان بارگذاری اولیه
+        self.initial_load = False  
 
     def update_ssl_mode(self):
         if self.initial_load:
-            return  # اگر بارگذاری اولیه است، هیچ کاری انجام نشود
+            return  
 
         headers = {
             'X-Auth-Email': self.parent().email,
@@ -1834,7 +1827,7 @@ class NetworkSettingsDialog(QDialog):
 
         response = requests.patch(url, headers=headers, json=data)
         if response.status_code == 200:
-            if not self.initial_load:  # Only show message if not initial load
+            if not self.initial_load:  
                 QMessageBox.information(
                     self, "Success", "Setting updated successfully")
         else:
