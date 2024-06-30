@@ -1,4 +1,4 @@
 PySide6
 cryptography
-qdarktheme
+pyqtdarktheme
 requests
