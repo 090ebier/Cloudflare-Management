@@ -42,8 +42,8 @@ Step 1: Clone the Repository
 Open a terminal or command prompt.
 Clone the repository using the following command:
 ```
-git clone https://github.com/your-username/your-repository.git
-cd your-repository
+git clone https://github.com/090ebier/Cloudflare-Management.git
+cd Cloudflare-Management
 pip install -r requirements.txt
 ```
 ```
