@@ -1,6 +1,6 @@
 # Cloudflare-Management
 
-##Application Overview
+#Application Overview
 This graphical application, developed using the PySide6 and cryptography libraries, allows users to manage and configure various settings related to DNS, SSL/TLS, and network configurations. To use this application, you need an API key that grants you access to these settings. The application uses the API key to update and manage the configurations.
 
 Features
